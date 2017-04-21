@@ -13,6 +13,7 @@ hswitch is a hosts file content switcher
 
 ## Todo
 
+- version numbers and changelog
 - actual storing of hosts file with super user privileges
 - Windows adaptions
 - packaging for Linux and Windows
