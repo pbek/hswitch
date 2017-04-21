@@ -2,6 +2,9 @@
 
 hswitch is a hosts file content switcher
 
+## Screenshot
+![Screenhot](screenshots/screenshot.png)
+
 ## Done
 
 - CRUD and enable / disable host block entries
