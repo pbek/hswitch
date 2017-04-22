@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=hswitch
+Comment=Hosts file content switcher to modify your static ip addresses
+Exec=hswitch
+Icon=${SNAP}/meta/gui/hswitch.png
+Type=Application
+Terminal=false
+StartupNotify=true
+Encoding=UTF-8
+Categories=Qt;TextEditor;
