@@ -6,9 +6,6 @@
 # We need a ssh key to push to the git repository
 # git+ssh://pbek@git.launchpad.net/~pbek/hswitch-snap
 #
-# The hswitch repository for Launchpad Snap relies on our source archive on
-# https://sourceforge.net/projects/hswitch/files/src/
-#
 
 
 # uncomment this if you want to force a version
@@ -52,6 +49,7 @@ sed -i "s/VERSION-STRING/$HSWITCH_VERSION/g" snapcraft.yaml
 
 
 echo "Committing changes..."
+git add -A
 git commit -m "releasing version $HSWITCH_VERSION" -a
 git push
 

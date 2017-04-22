@@ -7,9 +7,6 @@
 # We need to be logged in to ubuntu one with:
 # snapcraft login
 #
-# The hswitch repository for Launchpad Snap relies on our source archive on
-# https://sourceforge.net/projects/hswitch/files/src/
-#
 
 
 # uncomment this if you want to force a version
