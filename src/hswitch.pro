@@ -48,8 +48,7 @@ unix {
 
   INSTALLS += target desktop icons
 
-  target.path = $$BINDIR
-  target.files += hswitch
+  target.path = $$INSTROOT$$BINDIR
 
   desktop.path = $$DATADIR/applications
   desktop.files += hswitch.desktop
