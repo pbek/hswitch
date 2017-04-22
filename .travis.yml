@@ -27,7 +27,7 @@ install:
       sudo apt-get -qq update
       sudo apt-get -qq install g++-4.8 libc6-i386 qt58tools qt58svg
       export CXX="g++-4.8"
-      export CC="gcc-4.8"x
+      export CC="gcc-4.8"
     fi
   # OS X Qt http://braumeister.org/search/qt5
   # we need to use macdeployqtfix after using macdeployqt to fix the library paths!
@@ -45,7 +45,8 @@ script:
     then
       QTDIR="/opt/qt58"
       PATH="$QTDIR/bin:$PATH"
-      qt58-env.sh
+      ls -hal /opt/qt58
+      qt-env.sh
     fi
   - |
     if [[ "$TRAVIS_OS_NAME" == "osx" ]]
