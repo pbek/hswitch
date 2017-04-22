@@ -146,6 +146,7 @@ void MainWindow::on_entryTreeWidget_itemChanged(QTreeWidgetItem *item,
  */
 void MainWindow::on_entryTreeWidget_currentItemChanged(
         QTreeWidgetItem *current, QTreeWidgetItem *previous) {
+    Q_UNUSED(previous);
     QSettings settings;
     QString key = current->data(0, Qt::UserRole).toString();
     QString data = settings.value(hostEntrySettingsKey(key, "Data")).toString();
