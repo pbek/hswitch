@@ -407,5 +407,6 @@ void MainWindow::readSettings() {
 }
 
 void MainWindow::closeEvent(QCloseEvent *event) {
+    Q_UNUSED(event);
     storeSettings();
 }

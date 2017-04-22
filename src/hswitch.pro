@@ -18,6 +18,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = hswitch
 TEMPLATE = app
 
+CODECFORTR = UTF-8
+CONFIG += c++11
 
 SOURCES += main.cpp\
         mainwindow.cpp
@@ -29,3 +31,29 @@ FORMS    += mainwindow.ui
 
 RESOURCES += \
     images.qrc
+
+unix {
+
+  isEmpty(PREFIX) {
+    PREFIX = /usr
+  }
+
+  isEmpty(BINDIR) {
+    BINDIR = $$PREFIX/bin
+  }
+
+  isEmpty(DATADIR) {
+    DATADIR = $$PREFIX/share
+  }
+
+  INSTALLS += target desktop icons
+
+  target.path = $$BINDIR
+  target.files += hswitch
+
+  desktop.path = $$DATADIR/applications
+  desktop.files += hswitch.desktop
+
+  icons.path = $$DATADIR/icons/hicolor
+  icons.files += images/icons/*
+}
