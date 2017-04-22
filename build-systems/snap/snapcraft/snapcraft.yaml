@@ -22,7 +22,10 @@ parts:
     source: https://github.com/pbek/hswitch.git
     plugin: qmake
     qt-version: qt5
-    source: src/
+    source-branch: develop
+    options:
+       - ./src
+       - CONFIG+=release
     build-packages:
       - qttools5-dev
       - build-essential
