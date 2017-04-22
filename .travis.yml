@@ -45,7 +45,6 @@ script:
     then
       QTDIR="/opt/qt58"
       PATH="$QTDIR/bin:$PATH"
-      ls -hal /opt/qt58
       qt58-env.sh
     fi
   - |
