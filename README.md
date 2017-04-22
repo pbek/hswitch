@@ -24,6 +24,10 @@ It currently only works under Linux.
 - desktop and app icon
 - translation?
 
+## Installation
+
+- `snap install hswitch`
+
 ## Building
 
 To get the most current features you can build the application from the 
