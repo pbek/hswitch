@@ -23,8 +23,9 @@ install:
     then
       lsb_release -a
       sudo apt-add-repository -y ppa:ubuntu-toolchain-r/test
+      sudo apt-add-repository -y ppa:beineri/opt-qt58
       sudo apt-get -qq update
-      sudo apt-get -qq install g++-4.8 libc6-i386 qttools5 qtsvg5
+      sudo apt-get -qq install g++-4.8 libc6-i386 qt58tools qt58svg
       export CXX="g++-4.8"
       export CC="gcc-4.8"x
     fi
@@ -42,9 +43,9 @@ script:
   - |
     if [[ "$TRAVIS_OS_NAME" == "linux" ]]
     then
-      QTDIR="/opt/qt56"
+      QTDIR="/opt/qt58"
       PATH="$QTDIR/bin:$PATH"
-      qt56-env.sh
+      qt58-env.sh
     fi
   - |
     if [[ "$TRAVIS_OS_NAME" == "osx" ]]
