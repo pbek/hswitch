@@ -1,3 +1,16 @@
+/*
+ * Copyright (c) 2017 Patrizio Bekerle -- http://www.bekerle.com
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
+ * for more details.
+ */
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -36,6 +49,9 @@ private slots:
 
     void on_actionStore_hosts_file_triggered();
 
+protected:
+    void closeEvent(QCloseEvent *event);
+
 private:
     Ui::MainWindow *ui;
 
@@ -53,6 +69,10 @@ private:
     void removeSelectedHostEntries();
 
     QRegularExpression getHostsTextRegularExpression();
+
+    void storeSettings();
+
+    void readSettings();
 };
 
 #endif // MAINWINDOW_H

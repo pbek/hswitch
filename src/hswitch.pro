@@ -1,8 +1,15 @@
-#-------------------------------------------------
 #
-# Project created by QtCreator 2017-04-21T06:19:52
+# Copyright (c) 2017 Patrizio Bekerle -- http://www.bekerle.com
 #
-#-------------------------------------------------
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; version 2 of the License.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+# or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
+# for more details.
+#
 
 QT       += core gui
 
@@ -15,6 +22,7 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h\
+            version.h
 
 FORMS    += mainwindow.ui

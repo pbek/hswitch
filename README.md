@@ -1,19 +1,22 @@
 # hswitch
 
-hswitch is a hosts file content switcher
+[Changelog](https://github.com/pbek/hswitch/blob/develop/CHANGELOG.md) | 
+[Issues](https://github.com/pbek/hswitch/issues)
+
+**hswitch** is a hosts file content switcher to modify your static ip addresses 
+quickly for development.
+
+It currently just works under Linux.
 
 ## Screenshot
 ![Screenhot](screenshots/screenshot.png)
 
-## Done
-
-- CRUD and enable / disable host block entries
-- edit hosts data for a host block entry 
-- gathering of all enabled host blocks and adding it to `/etc/hosts`
-
 ## Todo
 
-- version numbers and changelog
-- actual storing of hosts file with super user privileges
 - Windows adaptions
+    - icons
+    - `sudo` and copy process replacement
+    - different hosts file
 - packaging for Linux and Windows
+- desktop and app icon
+- translation?

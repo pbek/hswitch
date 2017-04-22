@@ -24,6 +24,7 @@ set(SOURCE_FILES
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
+    version.h
 )
 
 

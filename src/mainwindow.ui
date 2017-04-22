@@ -49,7 +49,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <widget class="QDockWidget" name="listDockWidget">
    <property name="windowTitle">
-    <string>Host entries</string>
+    <string>Host entry blocks</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>1</number>
@@ -133,10 +133,11 @@
   </action>
   <action name="actionRemove_selected_host_entries">
    <property name="icon">
-    <iconset theme="edit-delete"/>
+    <iconset theme="edit-delete">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>Remove selected host entries</string>
+    <string>Remove selected blocks</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+R</string>

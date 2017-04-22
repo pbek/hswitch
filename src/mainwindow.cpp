@@ -1,19 +1,38 @@
+/*
+ * Copyright (c) 2017 Patrizio Bekerle -- http://www.bekerle.com
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
+ * for more details.
+ */
+
 #include <QtCore/QSettings>
 #include <QtCore/QUuid>
 #include <QtCore/QDebug>
 #include <QtWidgets/QMessageBox>
 #include <QtCore/QFile>
+#include <QtCore/QTemporaryFile>
+#include <QtCore/QDir>
+#include <QtCore/QProcess>
 #include "mainwindow.h"
+#include "version.h"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow) {
+        QMainWindow(parent),
+        ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
+    setWindowTitle("hswitch - version " + QString(VERSION));
     setDockNestingEnabled(true);
     setCentralWidget(Q_NULLPTR);
 
+    readSettings();
     loadHostEntries();
 }
 
@@ -99,6 +118,7 @@ QString MainWindow::generateUuid() const {
  * Quits the application
  */
 void MainWindow::on_actionQuit_triggered() {
+    storeSettings();
     QApplication::quit();
 }
 
@@ -251,27 +271,25 @@ void MainWindow::on_actionStore_hosts_file_triggered() {
 
     hostData += QString(HOSTS_POST_STRING) + "\n";
 
-    qDebug() << __func__ << " - 'hostData': " << hostData;
+    QString hostsFileName = "/etc/hosts";
 
-    QString fileName = "/etc/hosts.test";
+#ifdef QT_DEBUG
+    hostsFileName = "/etc/hosts.test";
+#endif
 
-    QFile file(fileName);
+    QFile file(hostsFileName);
 
     if (!file.open(QIODevice::ReadOnly)) {
-        qWarning() << QObject::tr("Could not read hosts file: %1")
-                .arg(fileName);
-
+        QMessageBox::critical(0, "",
+                tr("Could not read hosts file: %1").arg(hostsFileName));
         return;
     }
 
     QTextStream in(&file);
     in.setCodec("UTF-8");
 
-    // qDebug() << file.size() << in.readAll();
     QString hostsFileText = in.readAll();
     file.close();
-
-    qDebug() << __func__ << " - 'hostsFileText': " << hostsFileText;
 
     // get regular expression for the encrypted string
     QRegularExpression re = getHostsTextRegularExpression();
@@ -285,9 +303,68 @@ void MainWindow::on_actionStore_hosts_file_triggered() {
         hostsFileText += "\n\n\n" + hostData;
     }
 
-    qDebug() << __func__ << " - 'hostsFileText': " << hostsFileText;
+    // create a temporary file to store the host data
+    QTemporaryFile *tempFile = new QTemporaryFile();
 
-    // TODO(pbek): write to hosts file
+    if (!tempFile->open()) {
+        QMessageBox::critical(0, "",
+                              tr("Could not open temporary file!"));
+        return;
+    }
+
+    // write to the temporary file
+    tempFile->write(hostsFileText.toUtf8());
+    tempFile->flush();
+
+    QProcess process;
+    QString executablePath = "/usr/bin/kdesudo";
+
+    // fallback to gksudo
+    if (!QFile(executablePath).exists()) {
+        executablePath = "/usr/bin/gksudo";
+    }
+
+    // error if no graphical sudo command was found
+    if (!QFile(executablePath).exists()) {
+        QMessageBox::critical(0, "",
+                              tr("No kdesudo or gksudo command was found!"));
+        return;
+    }
+
+    // make a backup of the hosts file
+    QStringList parameters = QStringList() << "cp"
+                                           << hostsFileName
+                                           << hostsFileName + ".hswitch.bak";
+    process.start(executablePath, parameters);
+    process.waitForFinished();
+    QByteArray errorMessage = process.readAllStandardError();
+
+    // error if there was an error in the backup process
+    if (process.exitCode() != 0) {
+        QMessageBox::critical(0, "",
+                tr("Error while creating a backup of the hosts file '%1':\n\n"
+                           "%2").arg(hostsFileName, QString(errorMessage)));
+        return;
+    }
+
+    // copy the temporary file over the hosts file
+    parameters = QStringList() << "cp"<< tempFile->fileName() << hostsFileName;
+    process.start(executablePath, parameters);
+    process.waitForFinished();
+
+    // error if there was an error in the copy process
+    if (process.exitCode() != 0) {
+        QMessageBox::critical(0, "",
+                tr("Error while writing hosts file '%1':\n\n%2")
+                        .arg(hostsFileName, QString(errorMessage)));
+        return;
+    }
+
+    tempFile->close();
+
+    QMessageBox::information(0, "",
+                             tr("Hosts file '%1' was successfully written!")
+                                     .arg(hostsFileName));
 }
 
 /**
@@ -304,4 +381,31 @@ QRegularExpression MainWindow::getHostsTextRegularExpression() {
             QRegularExpression::DotMatchesEverythingOption);
 
     return re;
+}
+
+/**
+ * Stores the settings
+ */
+void MainWindow::storeSettings() {
+    QSettings settings;
+
+    settings.setValue("MainWindow/geometry", saveGeometry());
+    settings.setValue("MainWindow/windowState", saveState());
+    settings.setValue("MainWindow/menuBarGeometry",
+                      ui->menuBar->saveGeometry());
+}
+
+/**
+ * Reads the settings
+ */
+void MainWindow::readSettings() {
+    QSettings settings;
+    restoreGeometry(settings.value("MainWindow/geometry").toByteArray());
+    restoreState(settings.value("MainWindow/windowState").toByteArray());
+    ui->menuBar->restoreGeometry(
+            settings.value("MainWindow/menuBarGeometry").toByteArray());
+}
+
+void MainWindow::closeEvent(QCloseEvent *event) {
+    storeSettings();
 }
