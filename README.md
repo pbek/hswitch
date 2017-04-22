@@ -3,6 +3,8 @@
 [Changelog](https://github.com/pbek/hswitch/blob/develop/CHANGELOG.md) | 
 [Issues](https://github.com/pbek/hswitch/issues)
 
+[![Build Status Linux / OS X](https://travis-ci.org/pbek/hswitch.svg?branch=develop)](https://travis-ci.org/pbek/hswitch)
+
 **hswitch** is a hosts file content switcher to modify your static ip addresses 
 quickly for development.
 
