@@ -1,6 +1,7 @@
 name: hswitch
 version: "VERSION-STRING"
 summary: hosts file content switcher to modify your static ip addresses
+grade: stable
 confinement: strict
 description: |
   hswitch is a hosts file content switcher to modify your static ip addresses 
@@ -21,6 +22,7 @@ parts:
     source: https://github.com/pbek/hswitch.git
     plugin: qmake
     qt-version: qt5
+    source: src/
     build-packages:
       - qttools5-dev
       - build-essential

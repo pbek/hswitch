@@ -30,7 +30,7 @@ cd $PROJECT_PATH
 echo "Project path: $PROJECT_PATH"
 
 # checkout Launchpad Snap repository
-git clone --depth=5 git+ssh://pbek@git.launchpad.net/~pbek/hswitch-snap snap
+git clone --depth=5 git+ssh://pbek@git.launchpad.net/hswitch-snap snap
 
 # checkout the source code
 git clone --depth=5 git@github.com:pbek/hswitch.git hswitch -b $BRANCH
@@ -49,7 +49,7 @@ sed -i "s/VERSION-STRING/$HSWITCH_VERSION/g" snapcraft.yaml
 
 
 echo "Committing changes..."
-git add -A
+#git add -A
 git commit -m "releasing version $HSWITCH_VERSION" -a
 git push
 
