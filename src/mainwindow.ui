@@ -14,7 +14,7 @@
    <string>Hosts Switcher</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="images.qrc">
+   <iconset>
     <normaloff>:/icons/hswitch.svg</normaloff>:/icons/hswitch.svg</iconset>
   </property>
   <widget class="QWidget" name="centralWidget"/>
@@ -60,6 +60,18 @@
    </attribute>
    <widget class="QWidget" name="listDockWidgetContents">
     <layout class="QGridLayout" name="gridLayout">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
      <item row="0" column="0">
       <widget class="QTreeWidget" name="entryTreeWidget">
        <property name="contextMenuPolicy">
@@ -93,6 +105,18 @@
    </attribute>
    <widget class="QWidget" name="editDockWidgetContents">
     <layout class="QGridLayout" name="gridLayout_2">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
      <item row="0" column="0">
       <widget class="QTextEdit" name="entryTextEdit"/>
      </item>
@@ -129,7 +153,7 @@
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>Store hosts file</string>
+    <string>Write hosts file</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -149,8 +173,6 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="images.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

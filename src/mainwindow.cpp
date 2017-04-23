@@ -205,7 +205,7 @@ void MainWindow::removeSelectedHostEntries() {
             tr("Remove selected host entries"),
             tr("Remove <strong>%n</strong> selected host entries?",
                "", selectedItemsCount),
-            tr("&Remove"), tr("&Cancel"), QString::null,
+            tr("Remove"), tr("Cancel"), QString::null,
             0, 1) != 0) {
         return;
     }
@@ -247,6 +247,22 @@ void MainWindow::on_actionStore_hosts_file_triggered() {
         return;
     }
 
+    QString hostsFileName = "/etc/hosts";
+
+#ifdef QT_DEBUG
+    hostsFileName = "/etc/hosts.test";
+#endif
+
+    if (QMessageBox::information(
+            this,
+            tr("Write hosts file"),
+            tr("Generate hosts data and add it to hosts file '%1'?").arg(
+                    hostsFileName),
+            tr("Generate"), tr("Cancel"), QString::null,
+            0, 1) != 0) {
+        return;
+    }
+
     QSettings settings;
     QString hostData = QString(HOSTS_PRE_STRING) + "\n\n";
 
@@ -271,12 +287,6 @@ void MainWindow::on_actionStore_hosts_file_triggered() {
     }
 
     hostData += QString(HOSTS_POST_STRING) + "\n";
-
-    QString hostsFileName = "/etc/hosts";
-
-#ifdef QT_DEBUG
-    hostsFileName = "/etc/hosts.test";
-#endif
 
     QFile file(hostsFileName);
 

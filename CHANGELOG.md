@@ -1,5 +1,9 @@
 # hswitch Changelog
 
+## 17.04.2
+- minor design and user interface text changes
+- added a confirmation dialog before writing the host file
+
 ## 17.04.1
 - the hosts file is now actually stored
     - a backup will be created to `/etc/hosts.hswtich.bak`

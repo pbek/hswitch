@@ -20,13 +20,16 @@ It currently only works under Linux.
     - icons
     - `sudo` and copy process replacement
     - different hosts file
-- packaging for Linux and Windows
-- desktop and app icon
+    - packaging
 - translation?
 
 ## Installation
 
 - `snap install hswitch`
+- run `hswitch`
+    - since Qt snaps still seem to look atrocious under KDE you 
+      alternatively might want to run `/snap/hswitch/current/usr/bin/hswitch`
+      directly
 
 ## Building
 
