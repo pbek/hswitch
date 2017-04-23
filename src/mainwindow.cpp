@@ -29,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     setWindowTitle("hswitch - version " + QString(VERSION));
+    ui->mainToolBar->setWindowTitle(tr("Toolbar"));
     setDockNestingEnabled(true);
     setCentralWidget(Q_NULLPTR);
 
