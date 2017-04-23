@@ -46,7 +46,7 @@ cd hswitch
 ```
 
 Then download [Qt Creator](http://www.qt.io/download-open-source), open the 
-project file `src/hswitch.pro` and click on *Build / Build Project hswitch*.
+project file `src/hswitch.pro` and click on *Build / Run*.
 
 Or you can build it directly in your terminal:
 
