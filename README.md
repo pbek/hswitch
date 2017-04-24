@@ -26,10 +26,12 @@ It currently only works under Linux.
 ## Installation
 
 - `snap install hswitch`
-- run `hswitch`
-    - since Qt snaps still seem to look atrocious under KDE you 
-      alternatively might want to run `/snap/hswitch/current/usr/bin/hswitch`
-      directly
+- install the Qt base libraries on your system 
+- run `/snap/hswitch/current/usr/bin/hswitch`
+    - since Qt snaps still seem to look atrocious under KDE you might want to
+      run the binary directly
+    - disclaimer: you definitely have to run the binary directly, writing to 
+      the hosts file doesn't seem to work in the Snap confinement
 
 ## Building
 
@@ -60,3 +62,23 @@ Please feel free to contribute source code to this project, make suggestions or
 report troubles on the [issues page](https://github.com/pbek/hswitch/issues).
 
 You can also visit [hswitch on GitHub](https://github.com/pbek/hswitch).
+
+## Minimum software requirements
+
+- A desktop operating system, that supports [Qt](http://www.qt.io/)
+- Qt 5
+- gcc 4.8+
+
+## Disclaimer
+
+This SOFTWARE PRODUCT is provided by THE PROVIDER "as is" and "with all faults."
+THE PROVIDER makes no representations or warranties of any kind concerning the
+safety, suitability, lack of viruses, inaccuracies, typographical errors, or
+other harmful components of this SOFTWARE PRODUCT. 
+
+There are inherent dangers in the use of any software, and you are solely
+responsible for determining whether this SOFTWARE PRODUCT is compatible with
+your equipment and other software installed on your equipment.
+You are also solely responsible for the protection of your equipment and 
+backup of your data, and THE PROVIDER will not be liable for any damages you may
+suffer in connection with using, modifying, or distributing this SOFTWARE PRODUCT.
