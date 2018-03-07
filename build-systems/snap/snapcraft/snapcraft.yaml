@@ -10,11 +10,14 @@ description: |
 
 apps:
   hswitch:
-    command: desktop-launch ${SNAP}/usr/bin/hswitch --snap
+    command: desktop-launch ${SNAP}/usr/bin/hswitch -style=Fusion --snap
     # see https://developer.ubuntu.com/en/snappy/guides/interfaces
     plugs:
+      - x11
       - unity7
       - home
+      - desktop
+      - desktop-legacy
 
 parts:
   hswitch:
