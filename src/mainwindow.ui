@@ -14,7 +14,7 @@
    <string>Hosts Switcher</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="images.qrc">
     <normaloff>:/icons/hswitch.svg</normaloff>:/icons/hswitch.svg</iconset>
   </property>
   <widget class="QWidget" name="centralWidget"/>
@@ -118,7 +118,7 @@
       <number>0</number>
      </property>
      <item row="0" column="0">
-      <widget class="QTextEdit" name="entryTextEdit"/>
+      <widget class="QPlainTextEdit" name="entryPlainTextEdit"/>
      </item>
     </layout>
    </widget>
@@ -173,6 +173,8 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
  <connections/>
 </ui>

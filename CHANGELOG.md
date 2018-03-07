@@ -1,5 +1,8 @@
 # hswitch Changelog
 
+## 18.03.0
+- the text-edit for the host entries now only takes plain text
+
 ## 17.04.2
 - minor design and user interface text changes
 - added a confirmation dialog before writing the host file

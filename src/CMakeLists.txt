@@ -13,6 +13,7 @@ find_package( Qt5Widgets REQUIRED )
 find_package( Qt5Gui REQUIRED )
 find_package( Qt5Svg REQUIRED )
 
+qt5_wrap_ui(mainwindow.h mainwindow.ui)
 
 set(RESOURCE_FILES
         )

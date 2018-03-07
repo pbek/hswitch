@@ -151,15 +151,15 @@ void MainWindow::on_entryTreeWidget_currentItemChanged(
     QSettings settings;
     QString key = current->data(0, Qt::UserRole).toString();
     QString data = settings.value(hostEntrySettingsKey(key, "Data")).toString();
-    const QSignalBlocker blocker(ui->entryTextEdit);
+    const QSignalBlocker blocker(ui->entryPlainTextEdit);
     Q_UNUSED(blocker);
-    ui->entryTextEdit->setText(data);
+    ui->entryPlainTextEdit->setPlainText(data);
 }
 
 /**
  * Stores host data to a host entry
  */
-void MainWindow::on_entryTextEdit_textChanged() {
+void MainWindow::on_entryPlainTextEdit_textChanged() {
     QTreeWidgetItem *item = ui->entryTreeWidget->currentItem();
 
     if (item == Q_NULLPTR) {
@@ -168,7 +168,7 @@ void MainWindow::on_entryTextEdit_textChanged() {
     QSettings settings;
     QString key = item->data(0, Qt::UserRole).toString();
     settings.setValue(hostEntrySettingsKey(key, "Data"),
-                      ui->entryTextEdit->toPlainText());
+                      ui->entryPlainTextEdit->toPlainText());
 
 }
 

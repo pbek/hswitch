@@ -41,7 +41,7 @@ private slots:
 
     void on_entryTreeWidget_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous);
 
-    void on_entryTextEdit_textChanged();
+    void on_entryPlainTextEdit_textChanged();
 
     void on_entryTreeWidget_customContextMenuRequested(const QPoint &pos);
 
