@@ -1,5 +1,11 @@
 # hswitch Changelog
 
+## 18.05.0
+- [QMarkdownTextEdit](https://github.com/pbek/qmarkdowntextedit) (without 
+  highlighting) is now used as text-editor to make use of the search-feature
+  and various shortcuts
+    - you can now search in your host-entries with <kbd>Ctrl</kbd> + <kbd>F</kbd>
+ 
 ## 18.03.0
 - the text-edit for the host entries now only takes plain text
 
@@ -9,7 +15,7 @@
 
 ## 17.04.1
 - the hosts file is now actually stored
-    - a backup will be created to `/etc/hosts.hswtich.bak`
+    - a backup will be created to `/etc/hosts.hswitch.bak`
 - added version number and changelog
 - the geometry and position of the user interface is now stored and will be 
   restored when the app starts

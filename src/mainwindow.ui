@@ -117,8 +117,18 @@
      <property name="bottomMargin">
       <number>0</number>
      </property>
+     <property name="verticalSpacing">
+      <number>0</number>
+     </property>
      <item row="0" column="0">
-      <widget class="QPlainTextEdit" name="entryPlainTextEdit"/>
+      <widget class="QMarkdownTextEdit" name="entryPlainTextEdit"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QFrame" name="entryPlainTextEditSearchFrame">
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -173,6 +183,13 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QMarkdownTextEdit</class>
+   <extends>QPlainTextEdit</extends>
+   <header>libraries/qmarkdowntextedit/qmarkdowntextedit.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="images.qrc"/>
  </resources>

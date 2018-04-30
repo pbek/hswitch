@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Patrizio Bekerle -- http://www.bekerle.com
+ * Copyright (c) 2016-2018 Patrizio Bekerle -- http://www.bekerle.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

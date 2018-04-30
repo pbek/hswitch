@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Patrizio Bekerle -- http://www.bekerle.com
+ * Copyright (c) 2016-2018 Patrizio Bekerle -- http://www.bekerle.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,6 +27,8 @@ MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::MainWindow) {
     ui->setupUi(this);
+    ui->entryPlainTextEdit->setHighlightingEnabled(false);
+    ui->entryPlainTextEdit->initSearchFrame(ui->entryPlainTextEditSearchFrame);
 
     setWindowTitle("hswitch - version " + QString(VERSION));
     ui->mainToolBar->setWindowTitle(tr("Toolbar"));
