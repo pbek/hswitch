@@ -19,6 +19,7 @@
 #include <QtCore/QTemporaryFile>
 #include <QtCore/QDir>
 #include <QtCore/QProcess>
+#include <utils/gui.h>
 #include "mainwindow.h"
 #include "version.h"
 #include "ui_mainwindow.h"
@@ -256,13 +257,12 @@ void MainWindow::on_actionStore_hosts_file_triggered() {
     hostsFileName = "/etc/hosts.test";
 #endif
 
-    if (QMessageBox::information(
+    if (Utils::Gui::question(
             this,
             tr("Write hosts file"),
             tr("Generate hosts data and add it to hosts file '%1'?").arg(
-                    hostsFileName),
-            tr("Generate"), tr("Cancel"), QString::null,
-            0, 1) != 0) {
+                    hostsFileName), "generate-hosts-file") !=
+        QMessageBox::Yes) {
         return;
     }
 
@@ -366,19 +366,10 @@ void MainWindow::on_actionStore_hosts_file_triggered() {
     process.start(executablePath, parameters);
     process.waitForFinished();
 
-    // error if there was an error in the copy process
-    if (process.exitCode() != 0) {
-        QMessageBox::critical(0, "",
-                tr("Error while writing hosts file '%1':\n\n%2")
-                        .arg(hostsFileName, QString(errorMessage)));
-        return;
-    }
-
-    tempFile->close();
-
-    QMessageBox::information(0, "",
-                             tr("Hosts file '%1' was successfully written!")
-                                     .arg(hostsFileName));
+    const QString text = tr("Hosts file '%1' was successfully written!")
+                                         .arg(hostsFileName);
+    ui->statusBar->showMessage(text, 4000);
+    Utils::Gui::information(this, "", text, "hosts-file-written");
 }
 
 /**
@@ -423,4 +414,21 @@ void MainWindow::readSettings() {
 void MainWindow::closeEvent(QCloseEvent *event) {
     Q_UNUSED(event);
     storeSettings();
+}
+
+void MainWindow::on_actionReset_message_boxes_triggered() {
+    if (QMessageBox::question(this, tr("Reset"),
+                              tr("Reset the message boxes?")) !=
+        QMessageBox::Yes) {
+        return;
+    }
+
+    QSettings settings;
+
+    // remove all settings in the group
+    settings.beginGroup("MessageBoxOverride");
+    settings.remove("");
+    settings.endGroup();
+
+    ui->statusBar->showMessage(tr("The message boxes were reset!"), 4000);
 }

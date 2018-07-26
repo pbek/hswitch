@@ -24,7 +24,7 @@
      <x>0</x>
      <y>0</y>
      <width>1096</width>
-     <height>37</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHost">
@@ -37,7 +37,14 @@
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <addaction name="actionReset_message_boxes"/>
+   </widget>
    <addaction name="menuHost"/>
+   <addaction name="menuSettings"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -179,6 +186,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionReset_message_boxes">
+   <property name="icon">
+    <iconset theme="messagebox_warning"/>
+   </property>
+   <property name="text">
+    <string>Reset message boxes</string>
    </property>
   </action>
  </widget>

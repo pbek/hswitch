@@ -1,5 +1,10 @@
 # hswitch Changelog
 
+## 18.08.0
+- you can now choose to don't get the message boxes to generate the hosts 
+  file and the success message box any more
+    - there also is a new menu entry to reset the message boxes again 
+
 ## 18.05.0
 - [QMarkdownTextEdit](https://github.com/pbek/qmarkdowntextedit) (without 
   highlighting) is now used as text-editor to make use of the search-feature

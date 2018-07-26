@@ -49,6 +49,8 @@ private slots:
 
     void on_actionStore_hosts_file_triggered();
 
+    void on_actionReset_message_boxes_triggered();
+
 protected:
     void closeEvent(QCloseEvent *event);
 

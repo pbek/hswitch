@@ -22,9 +22,17 @@ CODECFORTR = UTF-8
 CONFIG += c++11
 
 SOURCES += main.cpp\
+        utils/misc.cpp \
+        utils/git.cpp \
+        utils/gui.cpp \
+        utils/schema.cpp \
         mainwindow.cpp
 
 HEADERS  += mainwindow.h\
+            utils/misc.h \
+            utils/git.h \
+            utils/gui.h \
+            utils/schema.h \
             version.h
 
 FORMS    += mainwindow.ui

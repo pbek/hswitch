@@ -31,6 +31,14 @@ set(SOURCE_FILES
     mainwindow.h
     mainwindow.ui
     version.h
+    utils/misc.cpp
+    utils/misc.h
+    utils/git.cpp
+    utils/git.h
+    utils/gui.cpp
+    utils/gui.h
+    utils/schema.cpp
+    utils/schema.h
     libraries/qmarkdowntextedit/markdownhighlighter.cpp
     libraries/qmarkdowntextedit/markdownhighlighter.h
     libraries/qmarkdowntextedit/qmarkdowntextedit.cpp
