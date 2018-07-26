@@ -29,11 +29,13 @@ parts:
        - ./src
        - CONFIG+=release
     build-packages:
+      - libc6
       - qttools5-dev
       - build-essential
       - libqt5svg5-dev
       - qttools5-dev-tools
     stage-packages:
+      - libc6
       - libqt5gui5
       - libqt5widgets5
       - libqt5svg5
