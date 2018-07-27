@@ -2,7 +2,7 @@ name: hswitch
 version: "VERSION-STRING"
 summary: hosts file content switcher to modify your static ip addresses
 grade: stable
-confinement: strict
+confinement: classic
 description: |
   hswitch is a hosts file content switcher to modify your static ip addresses 
   quickly for development.
