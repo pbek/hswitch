@@ -56,6 +56,7 @@ Or you can build it directly in your terminal:
 cd src
 qmake
 make
+make install
 ```
 
 Please feel free to contribute source code to this project, make suggestions or
