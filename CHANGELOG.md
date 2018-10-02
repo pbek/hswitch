@@ -1,5 +1,8 @@
 # hswitch Changelog
 
+## 18.10.0
+- added support for `sudo -A`, since `kdesudo` is gone now
+
 ## 18.08.0
 - you can now choose to don't get the message boxes to generate the hosts 
   file and the success message box any more

@@ -338,18 +338,26 @@ void MainWindow::on_actionStore_hosts_file_triggered() {
         executablePath = "/usr/bin/gksudo";
     }
 
+    QStringList backupParameters;
+    QStringList copyParameters;
+
+    // fallback to sudo
+    if (!QFile(executablePath).exists()) {
+        executablePath = "/usr/bin/sudo";
+        backupParameters << "-A";
+        copyParameters << "-A";
+    }
+
     // error if no graphical sudo command was found
     if (!QFile(executablePath).exists()) {
-        QMessageBox::critical(0, "",
-                              tr("No kdesudo or gksudo command was found!"));
+        QMessageBox::critical(
+                0, "", tr("No kdesudo, gksudo or sudo command was found!"));
         return;
     }
 
     // make a backup of the hosts file
-    QStringList parameters = QStringList() << "cp"
-                                           << hostsFileName
-                                           << hostsFileName + ".hswitch.bak";
-    process.start(executablePath, parameters);
+    backupParameters << "cp" << hostsFileName << hostsFileName + ".hswitch.bak";
+    process.start(executablePath, backupParameters);
     process.waitForFinished();
     QByteArray errorMessage = process.readAllStandardError();
 
@@ -362,8 +370,8 @@ void MainWindow::on_actionStore_hosts_file_triggered() {
     }
 
     // copy the temporary file over the hosts file
-    parameters = QStringList() << "cp"<< tempFile->fileName() << hostsFileName;
-    process.start(executablePath, parameters);
+    copyParameters << "cp" << tempFile->fileName() << hostsFileName;
+    process.start(executablePath, copyParameters);
     process.waitForFinished();
 
     const QString text = tr("Hosts file '%1' was successfully written!")
