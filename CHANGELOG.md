@@ -1,5 +1,8 @@
 # hswitch Changelog
 
+## 22.12.0
+- update qmarkdowntextedit
+
 ## 18.10.0
 - added support for `sudo -A`, since `kdesudo` is gone now
 
