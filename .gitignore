@@ -1,5 +1,5 @@
 cmake*
 .idea
 *.pro.user
-build/*
+build*
 
