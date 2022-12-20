@@ -1,6 +1,7 @@
 # hswitch Changelog
 
 ## 22.12.0
+- tried to improve snap support (for [#1](https://github.com/pbek/hswitch/issues/1))
 - update qmarkdowntextedit
 
 ## 18.10.0
