@@ -15,7 +15,6 @@ BRANCH=develop
 #BRANCH=master
 
 PROJECT_PATH="/tmp/hswitch-launchpad-snap-$$"
-CUR_DIR=$(pwd)
 
 
 echo "Started the Launchpad Snap packaging process, using latest '$BRANCH' git tree"
@@ -25,23 +24,24 @@ if [ -d $PROJECT_PATH ]; then
 fi
 
 mkdir $PROJECT_PATH
-cd $PROJECT_PATH
+cd $PROJECT_PATH || exit
 
 echo "Project path: $PROJECT_PATH"
 
 # checkout Launchpad Snap repository
-git clone --depth=5 git+ssh://pbek@git.launchpad.net/hswitch-snap snap
+git clone --depth=1 git+ssh://pbek@git.launchpad.net/hswitch-snap snap || exit
+#git clone -c core.sshCommand="/usr/bin/ssh -vvv" --depth=1 git+ssh://pbek@git.launchpad.net/hswitch-snap snap || exit
 
 # checkout the source code
-git clone --depth=5 git@github.com:pbek/hswitch.git hswitch -b $BRANCH
-cd hswitch
+git clone --depth=1 git@github.com:pbek/hswitch.git hswitch -b $BRANCH
+cd hswitch || exit
 
 if [ -z $HSWITCH_VERSION ]; then
     # get version from version.h
     HSWITCH_VERSION=`cat src/version.h | sed "s/[^0-9,.]//g"`
 fi
 
-cd ../snap
+cd ../snap || exit
 cp ../hswitch/build-systems/snap/snapcraft/* . -R
 
 # replace the version in the snapcraft.yaml file
