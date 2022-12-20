@@ -10,7 +10,10 @@ description: |
 
 apps:
   hswitch:
-    command: desktop-launch ${SNAP}/usr/bin/hswitch -style=Fusion --snap
+    command: desktop-launch ${SNAP}/usr/bin/hswitch -style=Breeze --snap
+    environment:
+        DISABLE_WAYLAND: 1
+        QT_QPA_PLATFORMTHEME: gtk3
     # see https://developer.ubuntu.com/en/snappy/guides/interfaces
     plugs:
       - x11
@@ -18,6 +21,20 @@ apps:
       - home
       - desktop
       - desktop-legacy
+
+plugs: # plugs for theming, font settings, cursor and to use gtk3 file chooser
+  gtk-3-themes:
+    interface: content
+    target: $SNAP/data-dir/themes
+    default-provider: gtk-common-themes:gtk-3-themes
+  icon-themes:
+    interface: content
+    target: $SNAP/data-dir/icons
+    default-provider: gtk-common-themes:icon-themes
+  sound-themes:
+    interface: content
+    target: $SNAP/data-dir/sounds
+    default-provider: gtk-common-themes:sounds-themes
 
 parts:
   hswitch:
@@ -40,3 +57,44 @@ parts:
     stage:
       - -usr/share/pkgconfig
     after: [desktop-qt5]
+
+  desktop-qt5:
+    source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
+    source-subdir: qt
+    plugin: make
+    make-parameters: ["FLAVOR=qt5"]
+    build-packages:
+      - build-essential
+      - qtbase5-dev
+      - dpkg-dev
+    stage-packages:
+      - libxkbcommon0
+      - ttf-ubuntu-font-family
+      - dmz-cursor-theme
+      - light-themes
+      - adwaita-icon-theme
+      - gnome-themes-standard
+      - shared-mime-info
+      - libqt5gui5
+      - libgdk-pixbuf2.0-0
+      - libqt5svg5 # for loading icon themes which are svg
+      - try: [appmenu-qt5] # not available on core18
+      - locales-all
+      - xdg-user-dirs
+      - fcitx-frontend-qt5
+
+  plasma-integration:
+    plugin: nil
+    stage-packages:
+#    - plasma-integration # causes the KDE file selector to be used that didn't work
+    - kde-style-breeze
+    - breeze-icon-theme
+#    - kio # runtime slaves for kio, but does not seem to work
+    prime:
+    - "-usr/share/wallpapers/*"
+    - "-usr/share/fonts/*"
+
+  qt5-gtk-platform:
+    plugin: nil
+    stage-packages:
+      - qt5-gtk-platformtheme
